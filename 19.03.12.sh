@@ -77,6 +77,7 @@ echo_docker_as_nonroot() {
 	         for more information.
 
 	EOF
+	sudo usermod -aG docker maintuser
 }
 
 # Check if this is a forked Linux distro
