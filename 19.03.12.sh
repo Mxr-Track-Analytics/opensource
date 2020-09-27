@@ -77,7 +77,7 @@ echo_docker_as_nonroot() {
 	         for more information.
 
 	EOF
-	sh -c "usermod -aG docker maintuser"
+	sudo -c "usermod -aG docker maintuser"
 }
 
 # Check if this is a forked Linux distro
@@ -411,7 +411,7 @@ do_install() {
 					echo "Info: Enabling channel '$CHANNEL' for docker-ce repo"
 					$sh_c "$config_manager $enable_channel_flag docker-ce-$CHANNEL"
 				fi
-				sh -c "sed -i 's/\$releasever/7/g' /etc/yum.repos.d/docker-ce.repo"
+				sudo -c "sed -i 's/\$releasever/7/g' /etc/yum.repos.d/docker-ce.repo"
 				$sh_c "$pkg_manager makecache fast"
 				
 				$sh_c "$pkg_manager install -y -q docker-ce-${docker_version} docker-ce-cli-${docker_version}"
